@@ -40,7 +40,6 @@ namespace RaspClient
                     string a = teksts[4].Substring(0, 5);
                     string b = teksts[5].Substring(0, 5);
                     string c = teksts[6].Substring(0, 5);
-                    string d = teksts[7].Substring(0, 7);
 
                     double a1 = double.Parse(a);
                     double b1 = double.Parse(b);
@@ -56,26 +55,22 @@ namespace RaspClient
                     SqlConnection con =
                         new SqlConnection(
 
-                            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PowernapDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                            "Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                     
                     
                     con.Open();
 
-                    var command = new SqlCommand("INSERT INTO SmartHomeData (Temperature, Fugt, Lys, Movement, Dato) VALUES (@Temperature, @Fugt, @Lys, @Movement, @Dato) , ", con);
+                    var command = new SqlCommand("INSERT INTO SmartHomeData (Temperature, Fugt, Lys, Dato) VALUES (@Temperature, @Fugt, @Lys, @Dato) , ", con);
 
                     command.Parameters.AddWithValue("@Temperature", a1);
                     command.Parameters.AddWithValue("@Fugt", b1);
                     command.Parameters.AddWithValue("@Lys", c1);
-                    command.Parameters.AddWithValue("@Movement", a1);
-                    command.Parameters.AddWithValue("@Dato", d);
+                    command.Parameters.AddWithValue("@Dato", DateTime.Now.ToString());
 
 
                     command.ExecuteNonQuery();
                     
-                    //command.Parameters.AddWithValue("@Movement", bytes[0]);
 
-
-                    //command.Connection = con;
                     //con.Close();
                     //command.Connection = con;
 

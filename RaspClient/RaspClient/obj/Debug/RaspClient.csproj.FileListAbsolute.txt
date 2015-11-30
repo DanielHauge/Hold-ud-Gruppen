@@ -3,3 +3,9 @@ c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\bin
 c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\bin\Debug\RaspClient.pdb
 c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\obj\Debug\RaspClient.exe
 c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\obj\Debug\RaspClient.pdb
+C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\RaspClient\RaspClient\bin\Debug\RaspClient.exe.config
+C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\RaspClient\RaspClient\obj\Debug\RaspClient.exe
+C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\RaspClient\RaspClient\obj\Debug\RaspClient.pdb
+C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\RaspClient\RaspClient\bin\Debug\RaspClient.exe
+C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\RaspClient\RaspClient\bin\Debug\RaspClient.pdb
+C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\RaspClient\RaspClient\obj\Debug\RaspClient.csprojResolveAssemblyReference.cache
