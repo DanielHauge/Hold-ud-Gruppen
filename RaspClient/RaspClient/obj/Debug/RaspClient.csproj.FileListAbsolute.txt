@@ -1,0 +1,5 @@
+c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\bin\Debug\RaspClient.exe.config
+c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\bin\Debug\RaspClient.exe
+c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\bin\Debug\RaspClient.pdb
+c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\obj\Debug\RaspClient.exe
+c:\users\turkmen\documents\visual studio 2015\Projects\RaspClient\RaspClient\obj\Debug\RaspClient.pdb
