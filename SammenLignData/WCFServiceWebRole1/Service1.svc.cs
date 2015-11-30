@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -12,22 +13,94 @@ namespace WCFServiceWebRole1
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-        public string GetData(int value)
+        public string FugtA(string Fra, string Til)
         {
-            return string.Format("You entered: {0}", value);
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            var command = new SqlCommand("SELECT Fugt FROM SmartHomeData WHERE Dato between '"+Fra+"' AND '"+Til+"'", con);
+            SqlDataReader dr = command.ExecuteReader();
+            List<decimal> gennemsnit = new List<decimal>();
+            while (dr.Read())
+            {
+                gennemsnit.Add(decimal.Parse(dr["Fugt"].ToString()));
+            }
+            string a = "Fugt A: " + gennemsnit.Average();
+            return a;
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public string FugtB(string Fra, string Til)
         {
-            if (composite == null)
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            var command = new SqlCommand("SELECT Fugt FROM SmartHomeData WHERE Dato between '" + Fra + "' AND '" + Til + "'", con);
+            SqlDataReader dr = command.ExecuteReader();
+            List<decimal> gennemsnit = new List<decimal>();
+            while (dr.Read())
             {
-                throw new ArgumentNullException("composite");
+                gennemsnit.Add(decimal.Parse(dr["Fugt"].ToString()));
             }
-            if (composite.BoolValue)
+            string a = "Fugt B: " + gennemsnit.Average();
+            return a;
+        }
+
+        public string LysA(string Fra, string Til)
+        {
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            var command = new SqlCommand("SELECT Lys FROM SmartHomeData WHERE Dato between '" + Fra + "' AND '" + Til + "'", con);
+            SqlDataReader dr = command.ExecuteReader();
+            List<decimal> gennemsnit = new List<decimal>();
+            while (dr.Read())
             {
-                composite.StringValue += "Suffix";
+                gennemsnit.Add(decimal.Parse(dr["Lys"].ToString()));
             }
-            return composite;
+            string a = "Lys A: " + gennemsnit.Average();
+            return a;
+        }
+
+        public string LysB(string Fra, string Til)
+        {
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            var command = new SqlCommand("SELECT Lys FROM SmartHomeData WHERE Dato between '" + Fra + "' AND '" + Til + "'", con);
+            SqlDataReader dr = command.ExecuteReader();
+            List<decimal> gennemsnit = new List<decimal>();
+            while (dr.Read())
+            {
+                gennemsnit.Add(decimal.Parse(dr["Lys"].ToString()));
+            }
+            string a = "Lys B: " + gennemsnit.Average();
+            return a;
+        }
+
+        public string TempA(string Fra, string Til)
+        {
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            var command = new SqlCommand("SELECT Temperature FROM SmartHomeData WHERE Dato between '" + Fra + "' AND '" + Til + "'", con);
+            SqlDataReader dr = command.ExecuteReader();
+            List<decimal> gennemsnit = new List<decimal>();
+            while (dr.Read())
+            {
+                gennemsnit.Add(decimal.Parse(dr["Temperature"].ToString()));
+            }
+            string a = "Varme A: " + gennemsnit.Average();
+            return a;
+        }
+
+        public string TempB(string Fra, string Til)
+        {
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            var command = new SqlCommand("SELECT Temperature FROM SmartHomeData WHERE Dato between '" + Fra + "' AND '" + Til + "'", con);
+            SqlDataReader dr = command.ExecuteReader();
+            List<decimal> gennemsnit = new List<decimal>();
+            while (dr.Read())
+            {
+                gennemsnit.Add(decimal.Parse(dr["Temperature"].ToString()));
+            }
+            string a = "Temperature B: " + gennemsnit.Average();
+            return a;
         }
     }
 }

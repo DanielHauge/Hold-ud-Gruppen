@@ -14,11 +14,24 @@ namespace WCFServiceWebRole1
     {
 
         [OperationContract]
-        string GetData(int value);
+        string TempA(string Fra, string Til);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        string TempB(string Fra, string Til);
 
+        [OperationContract]
+        string FugtA(string Fra, string Til);
+
+        [OperationContract]
+        string FugtB(string Fra, string Til);
+
+        [OperationContract]
+        string LysA(string Fra, string Til);
+
+        [OperationContract]
+        string LysB(string Fra, string Til);
+
+        
         // TODO: Add your service operations here
     }
 
