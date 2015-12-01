@@ -65,7 +65,7 @@ namespace RaspClient
                     command.Parameters.AddWithValue("@Temperature", a1);
                     command.Parameters.AddWithValue("@Fugt", b1);
                     command.Parameters.AddWithValue("@Lys", c1);
-                    command.Parameters.AddWithValue("@Dato", DateTime.Now.ToString());
+                    command.Parameters.AddWithValue("@Dato", DateTime.Now);
 
 
                     command.ExecuteNonQuery();

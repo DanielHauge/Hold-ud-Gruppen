@@ -12,26 +12,17 @@ namespace WCFServiceWebRole1
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        string GennemsnitA(string fra, string til, string type);
 
         [OperationContract]
-        string TempA(string Fra, string Til);
+        string GennemsnitB(string fra, string til, string type);
 
         [OperationContract]
-        string TempB(string Fra, string Til);
+        string Forskellen(string AvgA, string AvgB);
 
-        [OperationContract]
-        string FugtA(string Fra, string Til);
 
-        [OperationContract]
-        string FugtB(string Fra, string Til);
 
-        [OperationContract]
-        string LysA(string Fra, string Til);
-
-        [OperationContract]
-        string LysB(string Fra, string Til);
-
-        
         // TODO: Add your service operations here
     }
 
