@@ -41,9 +41,9 @@ namespace RaspClient
                     string b = teksts[5].Substring(0, 5);
                     string c = teksts[6].Substring(0, 5);
 
-                    double a1 = double.Parse(a);
-                    double b1 = double.Parse(b);
-                    double c1 = double.Parse(c);
+                    decimal a1 = decimal.Parse(a);
+                    decimal b1 = decimal.Parse(b);
+                    decimal c1 = decimal.Parse(c);
                     
 
                     Console.WriteLine(a1);
@@ -60,12 +60,12 @@ namespace RaspClient
                     
                     con.Open();
 
-                    var command = new SqlCommand("INSERT INTO SmartHomeData (Temperature, Fugt, Lys, Dato) VALUES (@Temperature, @Fugt, @Lys, @Dato) , ", con);
+                    var command = new SqlCommand("INSERT INTO SmartHomeData (Temperature, Fugt, Lys, Dato) VALUES (@Temperature, @Fugt, @Lys, @Dato)", con);
 
                     command.Parameters.AddWithValue("@Temperature", a1);
                     command.Parameters.AddWithValue("@Fugt", b1);
                     command.Parameters.AddWithValue("@Lys", c1);
-                    command.Parameters.AddWithValue("@Dato", DateTime.Now);
+                    command.Parameters.AddWithValue("@Dato", DateTime.Now.ToString());
 
 
                     command.ExecuteNonQuery();
