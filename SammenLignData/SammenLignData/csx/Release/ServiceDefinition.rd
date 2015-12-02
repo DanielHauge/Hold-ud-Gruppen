@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SammenLignData" generation="1" functional="0" release="0" Id="12efc750-3bcf-48d4-91e6-46e975d48a37" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SammenLignData" generation="1" functional="0" release="0" Id="18109373-0e4a-4f4f-a2d6-2e85424a3b21" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="SammenLignDataGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -42,7 +42,7 @@
       </maps>
       <components>
         <groupHascomponents>
-          <role name="WCFServiceWebRole1" generation="1" functional="0" release="0" software="C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\SammenLignData\SammenLignData\csx\Release\roles\WCFServiceWebRole1" entryPoint="base\x64\WaHostBootstrapper.exe" parameters="base\x64\WaIISHost.exe " memIndex="-1" hostingEnvironment="frontendadmin" hostingEnvironmentVersion="2">
+          <role name="WCFServiceWebRole1" generation="1" functional="0" release="0" software="C:\Users\Daniel\Desktop\GithubProjekt\Hold-ud-Gruppen\SammenLignData\SammenLignData\csx\Release\roles\WCFServiceWebRole1" entryPoint="base\x64\WaHostBootstrapper.exe" parameters="base\x64\WaIISHost.exe " memIndex="-1" hostingEnvironment="frontendadmin" hostingEnvironmentVersion="2">
             <componentports>
               <inPort name="Endpoint1" protocol="http" portRanges="80" />
             </componentports>
@@ -70,9 +70,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="cf2a7526-5935-433e-84cc-70bbbfe5e556" ref="Microsoft.RedDog.Contract\ServiceContract\SammenLignDataContract@ServiceDefinition">
+    <implementation Id="299fcedb-e835-49d4-a81d-73142e7b74ca" ref="Microsoft.RedDog.Contract\ServiceContract\SammenLignDataContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="e7bb9845-ccb3-4f79-bbcd-90dd091824a5" ref="Microsoft.RedDog.Contract\Interface\WCFServiceWebRole1:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="81d395eb-24e3-420e-bba4-4670dc0dab4d" ref="Microsoft.RedDog.Contract\Interface\WCFServiceWebRole1:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/SammenLignData/SammenLignDataGroup/WCFServiceWebRole1:Endpoint1" />
           </inPort>

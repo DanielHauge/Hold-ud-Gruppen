@@ -29,10 +29,9 @@ namespace WCFServiceWebRole1
             con.Open();
             DateTime FraD = DateTime.Parse(fra);
             DateTime TilD = DateTime.Parse(til);
-            var command = new SqlCommand("SELECT @p3 FROM SmartHomeData WHERE Dato BETWEEN @p1 AND @p2", con);
+            var command = new SqlCommand("SELECT "+type+" FROM SmartHomeData WHERE Dato BETWEEN @p1 AND @p2", con);
             command.Parameters.AddWithValue("@p1", FraD);
             command.Parameters.AddWithValue("@p2", TilD);
-            command.Parameters.AddWithValue("@pe", type);
 
             SqlDataReader dr = command.ExecuteReader();
             List<decimal> gennemsnit = new List<decimal>();
@@ -53,10 +52,9 @@ namespace WCFServiceWebRole1
             con.Open();
             DateTime FraD = DateTime.Parse(fra);
             DateTime TilD = DateTime.Parse(til);
-            var command = new SqlCommand("SELECT @p3 FROM SmartHomeData WHERE Dato BETWEEN @p1 AND @p2", con);
+            var command = new SqlCommand("SELECT "+type+" FROM SmartHomeData WHERE Dato BETWEEN @p1 AND @p2", con);
             command.Parameters.AddWithValue("@p1", FraD);
             command.Parameters.AddWithValue("@p2", TilD);
-            command.Parameters.AddWithValue("@pe", type);
 
             SqlDataReader dr = command.ExecuteReader();
             List<decimal> gennemsnit = new List<decimal>();
@@ -81,8 +79,7 @@ namespace WCFServiceWebRole1
             DateTime date = DateTime.Now;
             
             //var command = new SqlCommand("SELECT Temperature FROM SmartHomeData", con);
-            var command = new SqlCommand("SELECT @p1, Dato FROM SmartHomeData WHERE ID = IDENT_CURRENT('SmartHomeData')", con);
-            command.Parameters.AddWithValue("@p1", a);
+            var command = new SqlCommand("SELECT "+a+", Dato FROM SmartHomeData WHERE ID = IDENT_CURRENT('SmartHomeData')", con);
             SqlDataReader dr = command.ExecuteReader();
             while (dr.Read())
             {

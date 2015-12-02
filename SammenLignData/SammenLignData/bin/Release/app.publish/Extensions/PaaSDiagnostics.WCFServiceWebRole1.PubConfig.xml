@@ -28,4 +28,5 @@
       </PerformanceCounters>
     </DiagnosticMonitorConfiguration>
   </WadCfg>
+  <StorageAccount>sammenligndata</StorageAccount>
 </PublicConfig>

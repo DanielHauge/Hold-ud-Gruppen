@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="SammenLignData" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="WCFServiceWebRole1">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=sammenligndata;AccountKey=m/OaFTCmN1o51LlTU+D32QnlE1ogwydU5e1C7j5Q2GM9p9hJv36KAYtjsw817pcJcYwM2DGHt8ehoLOGCcSa7A==" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

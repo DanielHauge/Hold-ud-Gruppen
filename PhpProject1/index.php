@@ -18,17 +18,35 @@ and open the template in the editor.
   </head>
   
   <body background="http://cdn1.bestpsdfreebies.com/wp-content/uploads/2014/05/Part-1-Background-5-without-Glare.jpg">  
-      <iframe src="https://docs.google.com/spreadsheets/d/1y_zar9wYFYHuPfvDxABrEfjp1i6KchcZut73ZF3tros/pubhtml?widget=true&amp;headers=false"></iframe>
-    
-    
-    <form>
-        <h1>Oversigt</h1>
+        
+            <h1>Oversigt</h1> 
+        
+        
        <fieldset>
-          Temperatur : 
+        <?php
+        require_once './Service1.php';
+        $Temp = new Service1();
+        $FangTemp = new FangData();
+        $FangTemp->type = "Temperature";
+        $TempResult = $Temp->FangData($FangTemp);
+        echo $TempResult->FangDataResult;
+        ?>
           <br>
-          <br>Fugt :    
+          <br><?php
+        $Fugt = new Service1();
+        $FangFugt = new FangData();
+        $FangFugt->type = "Fugt";
+        $FugtResult = $Fugt->FangData($FangFugt);
+        echo $FugtResult->FangDataResult;
+        ?>   
           <br>
-          <br>Bevægelse : 
+          <br><?php
+        $Lys = new Service1();
+        $FangLys = new FangData();
+        $FangLys->type = "Lys";
+        $LysResult = $Lys->FangData($FangLys);
+        echo $LysResult->FangDataResult;
+        ?>
           <br>
        </fieldset>
         
@@ -63,7 +81,7 @@ and open the template in the editor.
         href="DateTime.html" ></a></FORM>
        </fieldset>
         
-    </form>
+    
      
         
         
