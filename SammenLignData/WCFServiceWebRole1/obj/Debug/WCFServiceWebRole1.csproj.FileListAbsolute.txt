@@ -56,3 +56,6 @@ C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\SammenLignData\WCFServiceW
 C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\SammenLignData\WCFServiceWebRole1\obj\Debug\WCFServiceWebRole1.csprojResolveAssemblyReference.cache
 C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\SammenLignData\WCFServiceWebRole1\obj\Debug\WCFServiceWebRole1.dll
 C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\SammenLignData\WCFServiceWebRole1\obj\Debug\WCFServiceWebRole1.pdb
+C:\Users\Daniel\Desktop\GithubProjekt\Hold-ud-Gruppen\SammenLignData\WCFServiceWebRole1\obj\Debug\WCFServiceWebRole1.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Desktop\GithubProjekt\Hold-ud-Gruppen\SammenLignData\WCFServiceWebRole1\obj\Debug\WCFServiceWebRole1.dll
+C:\Users\Daniel\Desktop\GithubProjekt\Hold-ud-Gruppen\SammenLignData\WCFServiceWebRole1\obj\Debug\WCFServiceWebRole1.pdb

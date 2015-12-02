@@ -70,6 +70,27 @@ namespace WCFServiceWebRole1
             return a;
         }
 
-        
+
+
+
+        public string FangData(string a)
+        {
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            string nyest = "";
+            DateTime date = DateTime.Now;
+            
+            //var command = new SqlCommand("SELECT Temperature FROM SmartHomeData", con);
+            var command = new SqlCommand("SELECT @p1, Dato FROM SmartHomeData WHERE ID = IDENT_CURRENT('SmartHomeData')", con);
+            command.Parameters.AddWithValue("@p1", a);
+            SqlDataReader dr = command.ExecuteReader();
+            while (dr.Read())
+            {
+                nyest = dr[0].ToString();
+                date = DateTime.Parse(dr[1].ToString());
+            }
+
+            return string.Format(a+": {0}" + " - Last Updated: " + date, nyest);
+        }
     }
 }

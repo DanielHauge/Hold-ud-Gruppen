@@ -21,6 +21,9 @@ namespace WCFServiceWebRole1
         [OperationContract]
         string Forskellen(string AvgA, string AvgB);
 
+        [OperationContract]
+        string FangData(string type);
+
 
 
         // TODO: Add your service operations here
