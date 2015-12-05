@@ -48,6 +48,14 @@ and open the template in the editor.
         echo $LysResult->FangDataResult;
         ?>
           <br>
+          <br><?php
+        $Forbrug = new Service1();
+        $FangForbrug = new FangData();
+        $FangForbrug->type = "Forbrug";
+        $ForbrugResult = $Forbrug->FangData($FangForbrug);
+        echo $ForbrugResult->FangDataResult;
+        ?>
+          <br>
        </fieldset>
         
         <h1>Styring</h1>
