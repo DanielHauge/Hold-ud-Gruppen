@@ -71,7 +71,13 @@ and open the template in the editor.
         $LydResult = $Lyd->FangData($FangLyd);
         echo $LydResult->FangDataResult;
         ?>
-          <br>
+          <br><?php
+	$Lys = new Service1();
+	$FangLys = new FangData();
+	$FangLys->type = "Lys";
+	$LysResult = $Lyd->FangData($FangLys);
+	echo $LydResult->FangDataResult;
+	?>
        </fieldset>
         
         <h1>Styring</h1>
