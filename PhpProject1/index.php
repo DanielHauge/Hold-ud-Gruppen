@@ -56,6 +56,22 @@ and open the template in the editor.
         echo $ForbrugResult->FangDataResult;
         ?>
           <br>
+          <br><?php
+        $Mov = new Service1();
+        $FangMov = new FangData();
+        $FangMov->type = "Movement";
+        $MovResult = $Mov->FangData($FangMov);
+        echo $MovResult->FangDataResult;
+        ?>
+          <br>
+          <br><?php
+        $Lyd = new Service1();
+        $FangLyd = new FangData();
+        $FangLyd->type = "Lyd";
+        $LydResult = $Lyd->FangData($FangLyd);
+        echo $LydResult->FangDataResult;
+        ?>
+          <br>
        </fieldset>
         
         <h1>Styring</h1>
