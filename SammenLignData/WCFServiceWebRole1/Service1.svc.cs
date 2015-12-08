@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Diagnostics;
 
 namespace WCFServiceWebRole1
 {
@@ -13,6 +14,8 @@ namespace WCFServiceWebRole1
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        TextWriterTraceListener txt = new TextWriterTraceListener("log.txt");
+        
         public string Forskellen(string AvgA, string AvgB)
         {
             decimal a = decimal.Parse(AvgA) - decimal.Parse(AvgB);
@@ -25,6 +28,7 @@ namespace WCFServiceWebRole1
 
         public string GennemsnitA(string fra, string til, string type)
         {
+            txt.WriteLine("Gennemsnit A - Fra"+fra+" - Til: "+til+" - Type: "+type);
             SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             con.Open();
             DateTime FraD = DateTime.Parse(fra);
@@ -48,6 +52,7 @@ namespace WCFServiceWebRole1
 
         public string GennemsnitB(string fra, string til, string type)
         {
+            txt.WriteLine("Gennemsnit B - Fra" + fra + " - Til: " + til + " - Type: " + type);
             SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             con.Open();
             DateTime FraD = DateTime.Parse(fra);
@@ -71,8 +76,11 @@ namespace WCFServiceWebRole1
 
 
 
+
+
         public string FangData(string a)
         {
+            
             SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             con.Open();
             string nyest = "";
@@ -86,8 +94,33 @@ namespace WCFServiceWebRole1
                 nyest = dr[0].ToString();
                 date = DateTime.Parse(dr[1].ToString());
             }
-
+            txt.WriteLine("Fang Data: " + a + " - Data: " + nyest);
             return string.Format(a+": {0}" + " - Last Updated: " + date, nyest);
+            
         }
+
+        public List<decimal> FangDataTilSheet(string fra, string til, string type)
+        {
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            DateTime FraD = DateTime.Parse(fra);
+            DateTime TilD = DateTime.Parse(til);
+            var command = new SqlCommand("SELECT " + type + " FROM SmartHomeData WHERE Dato BETWEEN @p1 AND @p2", con);
+            command.Parameters.AddWithValue("@p1", FraD);
+            command.Parameters.AddWithValue("@p2", TilD);
+
+            SqlDataReader dr = command.ExecuteReader();
+            List<decimal> gennemsnit = new List<decimal>();
+            while (dr.Read())
+            {
+                Console.WriteLine(dr[0].ToString());
+                gennemsnit.Add(decimal.Parse(dr[type].ToString()));
+            }
+            con.Close();
+            txt.WriteLine("Liste - Fra" + fra + " - Til: " + til + " - Type: " + type);
+
+            return gennemsnit;
+        
+    }
     }
 }
