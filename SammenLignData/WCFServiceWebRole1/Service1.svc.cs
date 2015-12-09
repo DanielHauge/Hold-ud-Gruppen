@@ -7,6 +7,8 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Diagnostics;
+using System.Net.Sockets;
+using System.IO;
 
 namespace WCFServiceWebRole1
 {
@@ -25,7 +27,6 @@ namespace WCFServiceWebRole1
             }
             return a.ToString();
         }
-
         public string GennemsnitA(string fra, string til, string type)
         {
             txt.WriteLine("Gennemsnit A - Fra"+fra+" - Til: "+til+" - Type: "+type);
@@ -48,8 +49,6 @@ namespace WCFServiceWebRole1
             string a = type+" A: " + gennemsnit.Average();
             return a;
         }
-
-
         public string GennemsnitB(string fra, string til, string type)
         {
             txt.WriteLine("Gennemsnit B - Fra" + fra + " - Til: " + til + " - Type: " + type);
@@ -72,33 +71,29 @@ namespace WCFServiceWebRole1
             string a = type + " B: " + gennemsnit.Average();
             return a;
         }
-
-
-
-
-
-
         public string FangData(string a)
         {
-            
+
             SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             con.Open();
             string nyest = "";
             DateTime date = DateTime.Now;
-            
+
             //var command = new SqlCommand("SELECT Temperature FROM SmartHomeData", con);
-            var command = new SqlCommand("SELECT "+a+", Dato FROM SmartHomeData WHERE ID = IDENT_CURRENT('SmartHomeData')", con);
+            var command = new SqlCommand("SELECT " + a + ", Dato FROM SmartHomeData WHERE ID = IDENT_CURRENT('SmartHomeData')", con);
             SqlDataReader dr = command.ExecuteReader();
+
+            
             while (dr.Read())
             {
                 nyest = dr[0].ToString();
                 date = DateTime.Parse(dr[1].ToString());
             }
-            txt.WriteLine("Fang Data: " + a + " - Data: " + nyest);
-            return string.Format(a+": {0}" + " - Last Updated: " + date, nyest);
             
-        }
+            txt.WriteLine("Fang Data: " + a + " - Data: " + nyest);
+            return string.Format(a + ": {0}" + " - Last Updated: " + date + dr, nyest);
 
+        }
         public List<decimal> FangDataTilSheet(string fra, string til, string type)
         {
             SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
@@ -122,5 +117,17 @@ namespace WCFServiceWebRole1
             return gennemsnit;
         
     }
+        public void send(string type, int værdi)
+        {
+            TcpClient clientSocket = new TcpClient("localhost", 6789);
+            Stream ns = clientSocket.GetStream();
+            StreamReader sr = new StreamReader(ns);
+            StreamWriter sw = new StreamWriter(ns);
+            sw.AutoFlush = true;
+            string mes = type + " " + værdi;
+            sw.WriteLine(mes);
+            ns.Close();
+            clientSocket.Close();
+        }
     }
 }

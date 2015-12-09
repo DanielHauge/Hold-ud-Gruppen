@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RaspClient
@@ -16,9 +18,18 @@ namespace RaspClient
 
         private const int listenPort = 7000;
         public static Radiator rad = new Radiator();
+        
+
+
         private static void StartListener(Radiator rad)
         {
             bool done = false;
+
+            var thread = new Thread(() => startTCPServer(rad));
+            thread.Start();
+
+            
+
 
             UdpClient listener = new UdpClient(listenPort);
             IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
@@ -40,14 +51,7 @@ namespace RaspClient
 
 
 
-                    if (text.Substring(0, 2).Equals("ON"))
-                    {
-                        TændRadiator(text, rad);
-                    }
-                    else if (text.Substring(0, 2).Equals("AN"))
-                    {
-                        AngivRadiator(text, rad);
-                    }
+                    
 
                     string[] teksts = text.Split(':');
                     string a = teksts[4].Substring(0, 5);
@@ -97,7 +101,41 @@ namespace RaspClient
             }
 
         }
-        
+
+        private static void startTCPServer(Radiator rad)
+        {
+            IPAddress ipad = IPAddress.Any;
+            TcpListener serverSocket = new TcpListener(ipad, 6789);
+            serverSocket.Start();
+            bool flag = true;
+
+            while (flag)
+            {
+                TcpClient connectionSocket = serverSocket.AcceptTcpClient();
+                Stream ns = connectionSocket.GetStream();
+                StreamReader sr = new StreamReader(ns);
+                string text = sr.ReadLine();
+
+                if (text.Substring(0, 2).Equals("ON"))
+                {
+                    TændRadiator(text, rad);
+                }
+                else if (text.Substring(0, 2).Equals("AN"))
+                {
+                    AngivRadiator(text, rad);
+                }
+                else if (text.Equals("EXIT"))
+                {
+                    flag = false;
+                }
+
+
+                sr.Close();
+                ns.Close();
+            }
+            serverSocket.Stop();
+        }
+
         private static void AngivRadiator(string text, Radiator rad)
         {
             rad.Angiv(double.Parse(text.Substring(3, 6)));

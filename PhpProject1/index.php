@@ -71,6 +71,18 @@ and open the template in the editor.
         $LydResult = $Lyd->FangData($FangLyd);
         echo $LydResult->FangDataResult;
         ?>
+          
+          <br><?php
+        $kwh = new Service1();
+        $gennemsnit = new GennemsnitA();
+        $gennemsnit->fra = "";
+        $gennemsnit->til = "";
+        $gennemsnit->type = "kwh";
+        $kwhresult = $kwh->GennemsnitA($gennemsnit)->GennemsnitAResult;
+        echo kwhresult;
+        ?>
+          
+          
           <br><?php
 	$Lys = new Service1();
 	$FangLys = new FangData();

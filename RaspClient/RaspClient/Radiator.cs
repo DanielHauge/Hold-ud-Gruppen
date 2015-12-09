@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 
+
+
 public class Radiator
 {
     public double Temperatur { get; }
