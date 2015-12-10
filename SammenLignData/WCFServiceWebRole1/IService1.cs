@@ -30,6 +30,8 @@ namespace WCFServiceWebRole1
         [OperationContract]
         void send(string type, int værdi);
 
+        [OperationContract]
+        string GraphMethod();
         // TODO: Add your service operations here
     }
 
