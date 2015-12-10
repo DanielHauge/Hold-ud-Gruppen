@@ -30,10 +30,7 @@ namespace WCFServiceWebRole1
         [OperationContract]
         void send(string type, int værdi);
 
-        [OperationContract]
-        string GraphMethod();
-        // TODO: Add your service operations here
-    }
+       }
 
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

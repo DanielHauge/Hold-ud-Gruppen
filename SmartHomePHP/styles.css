@@ -1,0 +1,102 @@
+@charset "utf-8";
+h1 {
+	font-size: 2.3em;
+	font-family: league-gothic;
+	font-style: normal;
+	font-weight: 400;
+	text-shadow: -4px -3px #E8E8E8;
+}
+h2  {
+	font-family: bitter;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.2em;
+}
+nav {
+	color: #FFFFFF;
+	background-color: #222325;
+	text-align: center;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 1%;
+}
+footer {
+	background-color: #222325;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: x-small;
+	margin-top: 5%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+	margin-left: 5%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+
+
+body {
+	font-family: source-sans-pro;
+	font-style: normal;
+	font-weight: 200;
+	background-color: #C9C9C9;
+	background-size: cover;
+	float: right;
+}
+.asideleft {
+	width: 30%;
+	margin-left: 5%;
+	margin-right: 2.5%;
+	float: left;
+
+}
+.sectionright {
+	width: 50%;
+	margin-left: 2.5%;
+	margin-right: 5%;
+	text-align: center;
+	float: right;
+	background-color: #FFFFFF;
+}
+header {
+	text-align: center;
+}
+a {
+	color: #FF2B2F;
+	text-decoration: none;
+}
+.navForside {
+	font-family: bitter;
+	font-style: normal;
+	font-weight: 400;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.navOmSH {
+	margin-left: 2%;
+	margin-right: 2%;
+	font-family: bitter;
+	font-style: normal;
+	font-weight: 400;
+
+}
+.navKontakt {
+	font-family: bitter;
+	font-style: normal;
+	font-weight: 400;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.navLogin {
+	margin-left: 2%;
+	margin-right: 2%;
+	font-family: bitter;
+	font-style: normal;
+	font-weight: 400;
+}
+.formvejr {
+	text-align: left;
+	margin-left: 5%;
+	margin-right: 5%;
+
+}
