@@ -1,22 +1,12 @@
 <?php
 class GennemsnitA {
-  public $fra; // string
   public $til; // string
+  public $fra; // string
   public $type; // string
 }
 
 class GennemsnitAResponse {
-  public $GennemsnitAResult; // string
-}
-
-class GennemsnitB {
-  public $fra; // string
-  public $til; // string
-  public $type; // string
-}
-
-class GennemsnitBResponse {
-  public $GennemsnitBResult; // string
+  public $GennemsnitAResult; // int
 }
 
 class Forskellen {
@@ -25,7 +15,7 @@ class Forskellen {
 }
 
 class ForskellenResponse {
-  public $ForskellenResult; // string
+  public $ForskellenResult; // int
 }
 
 class FangData {
@@ -33,17 +23,15 @@ class FangData {
 }
 
 class FangDataResponse {
-  public $FangDataResult; // string
+  public $FangDataResult; // int
 }
 
 class FangDataTilSheet {
-  public $fra; // string
-  public $til; // string
   public $type; // string
 }
 
 class FangDataTilSheetResponse {
-  public $FangDataTilSheetResult; // ArrayOfdecimal
+  public $FangDataTilSheetResult; // string
 }
 
 class send {
@@ -78,8 +66,6 @@ class Service1 extends SoapClient {
   private static $classmap = array(
                                     'GennemsnitA' => 'GennemsnitA',
                                     'GennemsnitAResponse' => 'GennemsnitAResponse',
-                                    'GennemsnitB' => 'GennemsnitB',
-                                    'GennemsnitBResponse' => 'GennemsnitBResponse',
                                     'Forskellen' => 'Forskellen',
                                     'ForskellenResponse' => 'ForskellenResponse',
                                     'FangData' => 'FangData',
@@ -110,20 +96,6 @@ class Service1 extends SoapClient {
    */
   public function GennemsnitA(GennemsnitA $parameters) {
     return $this->__soapCall('GennemsnitA', array($parameters),       array(
-            'uri' => 'http://tempuri.org/',
-            'soapaction' => ''
-           )
-      );
-  }
-
-  /**
-   *  
-   *
-   * @param GennemsnitB $parameters
-   * @return GennemsnitBResponse
-   */
-  public function GennemsnitB(GennemsnitB $parameters) {
-    return $this->__soapCall('GennemsnitB', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )

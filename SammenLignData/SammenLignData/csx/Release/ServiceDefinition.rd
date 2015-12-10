@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SammenLignData" generation="1" functional="0" release="0" Id="18109373-0e4a-4f4f-a2d6-2e85424a3b21" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SammenLignData" generation="1" functional="0" release="0" Id="6e769f37-2bab-407c-8ca8-2b05601c1273" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="SammenLignDataGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -70,9 +70,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="299fcedb-e835-49d4-a81d-73142e7b74ca" ref="Microsoft.RedDog.Contract\ServiceContract\SammenLignDataContract@ServiceDefinition">
+    <implementation Id="33b68360-4927-4d4d-9ef0-ba485e2ea459" ref="Microsoft.RedDog.Contract\ServiceContract\SammenLignDataContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="81d395eb-24e3-420e-bba4-4670dc0dab4d" ref="Microsoft.RedDog.Contract\Interface\WCFServiceWebRole1:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="f3d73165-8bb1-4d0e-8f57-72cfc8659412" ref="Microsoft.RedDog.Contract\Interface\WCFServiceWebRole1:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/SammenLignData/SammenLignDataGroup/WCFServiceWebRole1:Endpoint1" />
           </inPort>

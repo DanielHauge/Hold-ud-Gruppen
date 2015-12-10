@@ -13,19 +13,16 @@ namespace WCFServiceWebRole1
     public interface IService1
     {
         [OperationContract]
-        string GennemsnitA(string fra, string til, string type);
+        int GennemsnitA(string til, string fra, string type);
 
         [OperationContract]
-        string GennemsnitB(string fra, string til, string type);
+        int Forskellen(string AvgA, string AvgB);
 
         [OperationContract]
-        string Forskellen(string AvgA, string AvgB);
+        int FangData(string type);
 
         [OperationContract]
-        string FangData(string type);
-
-        [OperationContract]
-        string FangDataTilSheet(string fra, string til, string type);
+        string FangDataTilSheet(string type);
 
         [OperationContract]
         void send(string type, int værdi);

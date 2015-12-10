@@ -4,51 +4,8 @@
     
             
     
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-        
-        
-        
-        
-      google.load("visualization", "1.1", {packages:["bar"]});
-      google.setOnLoadCallback(drawChart);
-      
-            
-      function drawChart() {
-         
-         
-          
-        var data = google.visualization.arrayToDataTable([
-          ['Sammenlign', 'GennemsnitB', 'GennemSnitA'],
-          ['Temperatur', <?php 
-              
-          
-          require_once './Service1.php';
-          $webserv = new Service1();
-          $FangTempA = new FangData();
-          $FangTempA->type = 'Temperature';
-          $TempA = $webserv->FangData($FangTempA)->FangDataResult;
-                   
-          
-          ?>, 5],
-          ['2015', 2, 2],
-          ['2016', 2, 2],
-          ['2017', 2, 2]
-        ]);
-
-        var options = {
-          chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-          },
-          bars: 'horizontal' // Required for Material Bar Charts.
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-        chart.draw(data, options);
-      }
-    </script>   
+     
+ 
     
 <meta charset="utf-8">
 <title>Smart Home</title>
@@ -58,7 +15,7 @@
 
 <body>
 <header><img src="images/Smart-Home-Entertainment-Logo.png" width="350" alt=""/>
-<nav><a href="index.html" class="navForside">Forside</a> <a href="Sammenlign.html" class="navOmSH">SammenLign</a> <a href="kontakt.html" class="navKontakt">Kontakt</a> <a href="index.html" class="navLogin">Logud</a></nav>
+    <nav><a href="Log.php" class="navForside">Forside</a> <a href="Sammenlign.php" class="navOmSH">SammenLign</a> <a href="index.html" class="navLogin">Logud</a></nav>
 </header>
 <aside class="asideleft">
   <h1>Større udbytte med mindre energi</h1>
@@ -83,12 +40,51 @@ By accessing and/or using this code snippet, you agree to AccuWeather’s terms 
 
 <form>
 
-    
-    
-    
- 
-<h3>Bar Chart</h3>
- <div id="barchart_material" style="width: 900px; height: 500px;"></div>    
+<fieldset>
+        Temperatur: <?php
+        require_once './Service1.php';
+        $Temp = new Service1();
+        $FangTemp = new FangData();
+        $FangTemp->type = "Temperature";
+        $TempResult = $Temp->FangData($FangTemp);
+        echo $TempResult->FangDataResult;
+        ?>
+          <br>
+          <br>Fugt: <?php
+        $Fugt = new Service1();
+        $FangFugt = new FangData();
+        $FangFugt->type = "Fugt";
+        $FugtResult = $Fugt->FangData($FangFugt);
+        echo $FugtResult->FangDataResult;
+        ?>   
+          <br>
+          <br>Lys: <?php
+        $Lys = new Service1();
+        $FangLys = new FangData();
+        $FangLys->type = "Lys";
+        $LysResult = $Lys->FangData($FangLys);
+        echo $LysResult->FangDataResult;
+        ?>
+          <br>
+          <br>Forbrug: <?php
+        $Forbrug = new Service1();
+        $FangForbrug = new FangData();
+        $FangForbrug->type = "Forbrug";
+        $ForbrugResult = $Forbrug->FangData($FangForbrug);
+        echo $ForbrugResult->FangDataResult;
+        ?>
+          <br>
+          <br>Lyd: <?php
+        $Lyd = new Service1();
+        $FangLyd = new FangData();
+        $FangLyd->type = "Lyd";
+        $LydResult = $Lyd->FangData($FangLyd);
+        echo $LydResult->FangDataResult;
+        ?> 
+        
+       </fieldset>        
+            
+
 
 </form>
 </section>

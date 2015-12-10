@@ -19,22 +19,22 @@ namespace WCFServiceWebRole1
     {
         TextWriterTraceListener txt = new TextWriterTraceListener("log.txt");
         
-        public string Forskellen(string AvgA, string AvgB)
+        public int Forskellen(string AvgA, string AvgB)
         {
             decimal a = decimal.Parse(AvgA) - decimal.Parse(AvgB);
             if (a < 0)
             {
                 a = a * -1;
             }
-            return a.ToString();
+            return Convert.ToInt16(a);
         }
-        public string GennemsnitA(string fra, string til, string type)
+        public int GennemsnitA(string fra ,string til, string type)
         {
-            txt.WriteLine("Gennemsnit A - Fra"+fra+" - Til: "+til+" - Type: "+type);
-            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            con.Open();
             DateTime FraD = DateTime.Parse(fra);
             DateTime TilD = DateTime.Parse(til);
+            txt.WriteLine("Gennemsnit - Fra"+FraD+" - Til: "+TilD+" - Type: "+type);
+            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
             var command = new SqlCommand("SELECT "+type+" FROM SmartHomeData WHERE Dato BETWEEN @p1 AND @p2", con);
             command.Parameters.AddWithValue("@p1", FraD);
             command.Parameters.AddWithValue("@p2", TilD);
@@ -47,34 +47,13 @@ namespace WCFServiceWebRole1
                 gennemsnit.Add(decimal.Parse(dr[type].ToString()));
             }
             con.Close();
-            string a = type+" A: " + gennemsnit.Average();
+            int a = Convert.ToInt16(gennemsnit.Average());
             return a;
-        }
-        public string GennemsnitB(string fra, string til, string type)
-        {
-            txt.WriteLine("Gennemsnit B - Fra" + fra + " - Til: " + til + " - Type: " + type);
-            SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            con.Open();
-            DateTime FraD = DateTime.Parse(fra);
-            DateTime TilD = DateTime.Parse(til);
-            var command = new SqlCommand("SELECT "+type+" FROM SmartHomeData WHERE Dato BETWEEN @p1 AND @p2", con);
-            command.Parameters.AddWithValue("@p1", FraD);
-            command.Parameters.AddWithValue("@p2", TilD);
 
-            SqlDataReader dr = command.ExecuteReader();
-            List<decimal> gennemsnit = new List<decimal>();
-            while (dr.Read())
-            {
-                Console.WriteLine(dr[0].ToString());
-                gennemsnit.Add(decimal.Parse(dr[type].ToString()));
-            }
-            con.Close();
-            string a = type + " B: " + gennemsnit.Average();
-            return a;
         }
-        public string FangData(string a)
+        
+        public int FangData(string a)
         {
-
             SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             con.Open();
             string nyest = "";
@@ -92,15 +71,16 @@ namespace WCFServiceWebRole1
             }
             
             txt.WriteLine("Fang Data: " + a + " - Data: " + nyest);
-            return string.Format(a + ": {0}" + " - Last Updated: " + date + dr, nyest);
+            return Convert.ToInt16(nyest);
 
         }
-        public string FangDataTilSheet(string fra, string til, string type)
+        public string FangDataTilSheet(string type)
         {
+            DateTime FraD = DateTime.Now.AddDays(-7);
+            DateTime TilD = DateTime.Now;
             SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             con.Open();
-            DateTime FraD = DateTime.Parse(fra);
-            DateTime TilD = DateTime.Parse(til);
+            
             var command = new SqlCommand("SELECT " + type + " FROM SmartHomeData WHERE Dato BETWEEN @p1 AND @p2", con);
             command.Parameters.AddWithValue("@p1", FraD);
             command.Parameters.AddWithValue("@p2", TilD);
@@ -113,7 +93,7 @@ namespace WCFServiceWebRole1
                 gennemsnit.Add(decimal.Parse(dr[type].ToString()));
             }
             con.Close();
-            txt.WriteLine("Liste - Fra" + fra + " - Til: " + til + " - Type: " + type);
+            txt.WriteLine("Liste - Fra" + FraD + " - Til: " + TilD + " - Type: " + type);
             var jsonSerialiser = new JavaScriptSerializer();
             var json = jsonSerialiser.Serialize(gennemsnit);
             return json.ToString();
