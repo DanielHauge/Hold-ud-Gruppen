@@ -25,7 +25,7 @@ namespace WCFServiceWebRole1
         string FangData(string type);
 
         [OperationContract]
-        List<decimal> FangDataTilSheet(string fra, string til, string type);
+        string FangDataTilSheet(string fra, string til, string type);
 
         [OperationContract]
         void send(string type, int værdi);

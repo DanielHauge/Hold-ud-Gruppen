@@ -9,6 +9,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.IO;
+using System.Web.Script.Serialization;
 
 namespace WCFServiceWebRole1
 {
@@ -94,7 +95,7 @@ namespace WCFServiceWebRole1
             return string.Format(a + ": {0}" + " - Last Updated: " + date + dr, nyest);
 
         }
-        public List<decimal> FangDataTilSheet(string fra, string til, string type)
+        public string FangDataTilSheet(string fra, string til, string type)
         {
             SqlConnection con = new SqlConnection("Data Source=ramaldb.database.windows.net;Initial Catalog=SmartHomeDB;Integrated Security=False;User ID=ramal;Password=Rs123456;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             con.Open();
@@ -113,8 +114,9 @@ namespace WCFServiceWebRole1
             }
             con.Close();
             txt.WriteLine("Liste - Fra" + fra + " - Til: " + til + " - Type: " + type);
-
-            return gennemsnit;
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(gennemsnit);
+            return json.ToString();
         
     }
         public void send(string type, int værdi)
