@@ -51,12 +51,12 @@ body {
 
 }
 .sectionright {
+	text-align: center;
+	background-color: #FFFFFF;
 	width: 50%;
 	margin-left: 2.5%;
 	margin-right: 5%;
-	text-align: center;
 	float: right;
-	background-color: #FFFFFF;
 }
 header {
 	text-align: center;
@@ -99,4 +99,9 @@ a {
 	margin-left: 5%;
 	margin-right: 5%;
 
+}
+.tabelskrift {
+	font-family: bitter;
+	font-style: normal;
+	font-weight: 400;
 }
