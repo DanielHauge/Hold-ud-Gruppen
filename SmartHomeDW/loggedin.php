@@ -31,7 +31,8 @@ By accessing and/or using this code snippet, you agree to AccuWeather’s terms 
 <section>
        <fieldset>
            <form action="demo_form.asp">
-            <strong>Angiv Styrke</strong> :&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="text" name="Styrke">
+            <strong>Angiv Styrke</strong> :&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+             <input type="text" name="Styrke">
             <input type=submit value="Confirm">
             <FORM action="Sammenlign.html"><a
         href="Sammenlign.html" ></a></FORM>
@@ -106,23 +107,6 @@ $Fugt = new Service1();
 </form>
 </section>
 <br>
-<br>
-<h3>Seneste bevægelse i dit hjem</h3>
-<section>
-<form>
-<fieldset>
-<?php
-        $Mov = new Service1();
-        $FangMov = new FangData();
-        $FangMov->type = "Movement";
-        $MovResult = $Mov->FangData($FangMov);
-        echo $MovResult->FangDataResult;
-        ?>
-</fieldset>
-</form>
-</section>
-<br>
-<br>
 <h3>Seneste lyd i dit hjem</h3>
 <section>
 <form>
@@ -135,7 +119,16 @@ $Fugt = new Service1();
         echo $LydResult->FangDataResult;
         ?>
 </fieldset>
-</form>     
+</form>   
+<br>
+<br>
+<form class="formvejr"> <a href=<a href="http://www.accuweather.com/en/dk/roskilde/125902/weather-forecast/125902" class="aw-widget-legal">
+<!--
+By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at http://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at http://www.accuweather.com/en/privacy.
+-->
+</a><div id="awtd1449414539745" class="aw-widget-36hour"  data-locationkey="125902" data-unit="c" data-language="da" data-useip="false" data-uid="awtd1449414539745" data-editlocation="false"></div><script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>
+
+</form>  
 <br>
  <br>
 <footer>Copyright 2015 by Hold Ud Gruppen. Made with agile mindset.</footer>
