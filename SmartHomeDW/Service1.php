@@ -36,6 +36,24 @@ class FangDataResponse {
   public $FangDataResult; // string
 }
 
+class FangDataTilSheet {
+  public $fra; // string
+  public $til; // string
+  public $type; // string
+}
+
+class FangDataTilSheetResponse {
+  public $FangDataTilSheetResult; // ArrayOfdecimal
+}
+
+class send {
+  public $type; // string
+  public $værdi; // int
+}
+
+class sendResponse {
+}
+
 class char {
 }
 
@@ -66,6 +84,10 @@ class Service1 extends SoapClient {
                                     'ForskellenResponse' => 'ForskellenResponse',
                                     'FangData' => 'FangData',
                                     'FangDataResponse' => 'FangDataResponse',
+                                    'FangDataTilSheet' => 'FangDataTilSheet',
+                                    'FangDataTilSheetResponse' => 'FangDataTilSheetResponse',
+                                    'send' => 'send',
+                                    'sendResponse' => 'sendResponse',
                                     'char' => 'char',
                                     'duration' => 'duration',
                                     'guid' => 'guid',
@@ -130,6 +152,34 @@ class Service1 extends SoapClient {
    */
   public function FangData(FangData $parameters) {
     return $this->__soapCall('FangData', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param FangDataTilSheet $parameters
+   * @return FangDataTilSheetResponse
+   */
+  public function FangDataTilSheet(FangDataTilSheet $parameters) {
+    return $this->__soapCall('FangDataTilSheet', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param send $parameters
+   * @return sendResponse
+   */
+  public function send(send $parameters) {
+    return $this->__soapCall('send', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )

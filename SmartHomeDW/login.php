@@ -8,7 +8,7 @@
 </head>
 <body>
 <header><img src="images/Smart-Home-Entertainment-Logo.png" width="350" alt=""/>
-<nav><a href="index.html" class="navForside">Forside</a> <a href="omsmarthome.html" class="navOmSH">Om SmartHome</a> <a href="kontakt.html" class="navKontakt">Kontakt</a> <a href="login.html" class="navLogin">Login</a></nav>
+<nav><a href="index.html" class="navForside">Forside</a> <a href="omsmarthome.html" class="navOmSH">Om SmartHome</a> <a href="kontakt.php" class="navKontakt">Kontakt</a> <a href="login.php" class="navLogin">Login</a></nav>
 </header>
 <aside class="asideleft">
   <h1>Log ind og udforsk dit hjem</h1>
@@ -18,74 +18,62 @@
 <p><strong>Log ind her med dit brugernavn og kode som er blevet sendt til dig. Og start med udforske dit hjem. Vi har installeret det hele i dit hus, og du kan allerede nu se hvor meget dit forbrug er, samt styre dit hjem ligemeget hvor du er.</strong></p>
 </section>
 <br>
-<form action= "index.php" method="post">
+<form action= "login.php" method="post">
+
+
 <table width="232" border="1" align="center">
   <tbody>
     <tr>
-      <td width="76"><strong>Brugernavn</strong>:</td>
+      <td width="76"><strong>Brugernavn:</strong></td>
       <td width="144">
         <input type="text" name="u_name" id="u_name"></td>
     </tr>
     <tr>
-      <td><strong>Koden:</strong></td>
+      <td width="76"><strong>Koden:</strong></td>
       <td>
         <input type="password" name="u_pass" id="u_pass"></td>
     </tr>
     <tr>
-      <td><strong>Email:</strong></td>
-      <td>
-        <input type="text" name="email" id="email"></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align ="center"><input type="submit" name="submit" id="submit" value="Login"></div></td>
+      <td colspan="2"><div align ="center"><input type="submit" name="Login" id="submit" value="Login"></div></td>
     </tr>
   </tbody>
 </table>
-</body>
-</html>
-<?php
-//$con= mysql_connect("eu-cdbr-azure-west-c.cloudapp.net", "bd599994df031d","79b11c89") or die (mysql_error());
-//$db=  mysql_select_db('smarthomedb',$con)or die (mysql_error());
-        
- 
-if(isset($_POST['submit']))
-{
-
-$host="eu-cdbr-azure-west-c.cloudapp.net";
-$port=3306;
-$socket="";
-$user="bd599994df031d";
-$password="79b11c89";
-$dbnamef="";
-
-$con = new mysqli($host, $user, $password, $dbnamef, $port, $socket)
-	or die ('Could not connect to the database server' . mysqli_connect_error());
-
-//$con->close();
-
-@mysql_select_db("SmartHomeDB",$con) or die("Could not select database");
-
-$name =$_POST['u_name'];
-$pass= $_POST['u_pass'];
-$email=$_POST['email'];
-
-
-$sql="INSERT INTO opretbruger(username,password,email) 
-VALUES($name ,$pass,$email)";
-
-$result=mysql_query($sql,$con);
-
-if($result) {
-    echo "<p>Bruger er oprrettet!</p>";
-}
-else {
-    echo "<p>prøv igen!!</p>";
-
-mysql_close($con);
-
- }}?>
-
 </form>
+<?php
+
+$con= mysql_connect("eu-cdbr-azure-west-c.cloudapp.net", "bd599994df031d","79b11c89") or die (mysql_error());
+$db=  mysql_select_db('SmartHomeDB',$con)or die (mysql_error());
+        
+ if (isset($_POST['Login']))  
+ {
+      $name=$_POST['u_name'];
+      $pass=$_POST['u_pass'];
+  if ($name=='')
+  {
+   echo'Udfyld de tomme felter';
+   
+ }
+ 
+ if ($pass=='')
+  {
+   echo'Udfyld de tomme felter';
+   
+ }
+ 
+ else {
+          
+          
+$quert ="Select * from login where username ='$name' AND password = '$pass'";
+$run =  mysql_query($quert) or die (mysql_error());
+ }
+ if (mysql_num_rows($run)>0){
+     header("Location: loggedin.php");
+ }
+ else {
+     echo '<strong>Brugernavn eller Adganskode er forkert, prøv venligtst igen</strong>';
+ }
+ }
+?>
 <footer>Copyright 2015 by Hold Ud Gruppen. Made with agile mindset.</footer>
 
 </body>
