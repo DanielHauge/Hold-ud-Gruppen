@@ -25,11 +25,13 @@ and open the template in the editor.
        <fieldset>
         <?php
         require_once './Service1.php';
-        $Temp = new Service1();
-        $FangTemp = new FangData();
-        $FangTemp->type = "Temperature";
-        $TempResult = $Temp->FangData($FangTemp);
-        echo $TempResult->FangDataResult;
+          $webserv = new Service1();
+          $GFugtB = new GennemsnitA();
+          $GFugtB->fra = '07-12-2015 13:05:00';
+          $GFugtB->til = '07-12-2015 13:06:13';
+          $GFugtB->type = 'Fugt';
+          $FugtB = $webserv->GennemsnitA($GFugtB)->GennemsnitAResult;
+          echo $FugtB;
         ?>
           <br>
           <br><?php

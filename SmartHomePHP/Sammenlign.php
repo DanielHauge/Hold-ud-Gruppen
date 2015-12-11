@@ -20,9 +20,11 @@
       function drawChart() {
          //Temp
 
+         
+
          var TemperaturA = <?php 
         if (isset($_POST['t1'])){
-          require './Service1.php';
+            require_once './Service1.php';
           $webserv = new Service1();
           $GTempA = new GennemsnitA();
           $GTempA->fra = $_POST['t1'];
@@ -31,11 +33,12 @@
           $TempA = $webserv->GennemsnitA($GTempA)->GennemsnitAResult;
           echo $TempA;
           }else {
-              echo 10;
+              echo 100;
           }
           ?> ;
          var TemperaturB = <?php 
           if (isset($_POST['t1'])){
+              require_once './Service1.php';
           $webserv = new Service1();
           $GTempB = new GennemsnitA();
           $GTempB->fra = $_POST['t1'];
@@ -50,6 +53,7 @@
            //Fugt       
            var FugtA = <?php 
           if (isset($_POST['t1'])){
+              require_once './Service1.php';
           $webserv = new Service1();
           $GFugtA = new GennemsnitA();
           $GFugtA->fra = $_POST['t1'];
@@ -61,8 +65,10 @@
               echo 10;
           }
           ?> ; 
+                  
           var FugtB = <?php 
           if (isset($_POST['t1'])){
+          require_once './Service1.php';
           $webserv = new Service1();
           $GFugtB = new GennemsnitA();
           $GFugtB->fra = $_POST['t1'];
@@ -78,8 +84,10 @@
             //
             //
             //
+            
            var LysA = <?php 
-          if (isset($_POST['t1'])){
+           if (isset($_POST['t1'])){
+          require_once './Service1.php';
           $webserv = new Service1();
           $GLysA = new GennemsnitA();
           $GLysA->fra = $_POST['t1'];
@@ -93,6 +101,7 @@
           ?> ; 
           var LysB = <?php 
           if (isset($_POST['t1'])){
+              require_once './Service1.php';
           $webserv = new Service1();
           $GLysB = new GennemsnitA();
           $GLysB->fra = $_POST['t1'];
@@ -110,6 +119,7 @@
               
                   var LydA = <?php 
           if (isset($_POST['t1'])){
+              require_once './Service1.php';
           $webserv = new Service1();
           $GLydA = new GennemsnitA();
           $GLydA->fra = $_POST['t1'];
@@ -123,6 +133,7 @@
           ?> ; 
           var LydB = <?php 
           if (isset($_POST['t1'])){
+              require_once './Service1.php';
           $webserv = new Service1();
           $GLydB = new GennemsnitA();
           $GLydB->fra = $_POST['t1'];
@@ -140,6 +151,7 @@
           
           var ForbrugA = <?php 
           if (isset($_POST['t1'])){
+              require_once './Service1.php';
           $webserv = new Service1();
           $GForA = new GennemsnitA();
           $GForA->fra = $_POST['t1'];
@@ -154,7 +166,7 @@
           var ForbrugB = <?php 
           
           if (isset($_POST['t1'])){
-          
+          require_once './Service1.php';
           $webserv = new Service1();
           $GForB = new GennemsnitA();
           $GForB->fra = $_POST['t1'];
@@ -176,7 +188,7 @@
           ['Lyd', LydA, LydB],
           ['Forbrug', ForbrugA, ForbrugA]
         ]);
-
+console.log(data);
         var options = {
           chart: {
             title: 'Gennemsnits Sammenligninger fra tidsperioder',
@@ -225,10 +237,10 @@ By accessing and/or using this code snippet, you agree to AccuWeather’s terms 
 <br>
 <section>
 
-<form>
+
 
     
-    <form method="post" action="Prøv.php">
+    <form method="post" action="Sammenlign.php">
         <input type="text" name="t1">
         <input type="text" name="t2">
         <input type="submit" value="Go" name="knap">
@@ -240,7 +252,6 @@ By accessing and/or using this code snippet, you agree to AccuWeather’s terms 
     <h2>Bar Chart</h2>
     <div id="barchart_material" style="width: 900px; height: 500px;"></div>    
 
-</form>
 </section>
 <footer>Copyright 2015 by Hold Ud Gruppen. Made with agile mindset.</footer>
 

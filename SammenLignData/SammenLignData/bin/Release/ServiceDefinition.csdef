@@ -25,7 +25,7 @@
     </Endpoints>
     <Contents>
       <Content destination=".\">
-        <SourceDirectory path="C:\Users\Daniel\Desktop\GithubProjekt\Hold-ud-Gruppen\SammenLignData\SammenLignData\rcf\Release\WCFServiceWebRole1Content\" />
+        <SourceDirectory path="C:\Users\DanielHauge\Documents\GitHub\Hold-ud-Gruppen\SammenLignData\SammenLignData\rcf\Release\WCFServiceWebRole1Content\" />
       </Content>
     </Contents>
   </WebRole>
